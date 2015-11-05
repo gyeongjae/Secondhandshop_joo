@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.basket.basket-mapper">
+    <sql id="where-no">
+      WHERE no=#{no}
+    </sql>
+    
+    <insert id="basketInsert" parameterType="Board">
+      <!-- Sequence -->
+      <selectKey keyProperty="no" resultType="int" order="BEFORE">
+        SELECT NVL(MAX(no)+1,1) as no FROM replyBoard
+      </selectKey>
+      INSERT INTO basket VALUES(
+        #{bas_no},#{good_name},#{good_price},
+        #{bas_regdate},#{gno},#{gno},#{cno}
+      )
+    </insert>
+    
+    <select id="basketListData" resultType="Basket">
+     SELECT no,name,price 
+     FROM BASKET
+     <include refid="where-no"/>
+    </select>
+    
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
